@@ -1,3 +1,5 @@
+# Credit to https://github.com/jdmaturen for this implementation
+
 """
 Implementation of the shifted beta geometric (sBG) model from "How to Project Customer Retention" (Fader and Hardie 2006)
 
