@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh-0.7.1.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh-0.7.1.min.css" />
+    {% autoescape false %}
+        {{ plot_script }}
+    {% endautoescape  %}
+</head>
+<body>
+    <h1>Results</h1>
+
+    {% for res in results %}
+        <div>
+            <h2>{{ res.name }}</h2>
+            <span>Alpha:</span><span>{{ res.alpha }}</span>
+            <br/>
+            <span>Beta:</span><span>{{ res.beta }}</span>
+        </div>
+    {% endfor %}
+    <div>
+        {% autoescape false %}
+            {{ plot_area }}
+        {% endautoescape  %}
+    </div>
+</body>
+</html>
