@@ -6,7 +6,7 @@ import json
 class SbgTestCase(unittest.TestCase):
 
     def test_predict(self):
-        data = {'csvurl': 'sample.csv'}
+        data = {'csvurl': './zoo/2.csv'}
 
         response = app.test_client().post('/predict', data=data)
 
@@ -14,7 +14,7 @@ class SbgTestCase(unittest.TestCase):
 
     def test_predict_values(self):
         from utils import parse
-        res = parse('sample.csv')
+        res = parse('zoo/2.csv')
 
         # Regular
         self.assertAlmostEqual(res[0].alpha, 0.697, 3)

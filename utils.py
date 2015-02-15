@@ -8,6 +8,7 @@ COLORS = ["#7fc97f", "#beaed4", "#fdc086", "#ffff99", "#386cb0", "#f0027f", "#bf
 
 
 def parse(data_url):
+    data_url = '/Users/cclark/Documents/code/fh/zoo/3.csv'
     ds = pd.read_csv(data_url)
     ds.reindex(index=ds['t'])
     del ds['t']
