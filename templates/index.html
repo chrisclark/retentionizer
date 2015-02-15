@@ -1,22 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h1>Upload</h1>
-    <p>
-        URL to csv file, of the form:<br/>
-        <pre><code>t,cohort_1_survival,cohort_2_survival,...</code></pre>
-    </p>
-    <form action="{{ url_for('predict') }}" method=post>
-        <dl>
-          <dt>URL:</dt>
-          <dd><input type=text name=csvurl>
-          <dd><input type=submit value=Submit>
-        </dl>
-    </form>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block body %}
+<div class="view-wrap">
+    <h1>Upload Data</h1>
+
+    <p>Enter the URL of your data:</p>
+
+    <div class="grid-2 gutter-40">
+        <div class="span-1">
+            <fieldset>
+                <legend>Settings</legend>
+                <form action="{{ url_for('predict') }}" method="post">
+                    <ul>
+                        <li>
+                            <label>URL</label>
+                            <input type="text" name="csvurl" />
+                        </li>
+                        <li>
+                            <input type="submit">
+                        </li>
+                    </ul>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+{%  endblock %}

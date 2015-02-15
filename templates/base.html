@@ -1,0 +1,50 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+
+<head>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta charset="UTF-8" />
+
+	<link rel="stylesheet" type="text/css" href="static/css/all.css">
+    {% block head %}<title>Retentionizer</title>
+{% endblock %}
+</head>
+
+<body>
+	<!--[if lt IE 7]>
+		<p class="chromeframe" style="background:#eee; padding:10px; width:100%">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+	<![endif]-->
+
+	<div class="flakes-frame">
+
+		<div class="flakes-navigation">
+			<h2 class="logo">Retentionizer</h2>
+
+			<ul>
+				<li><a href="/">Upload</a></li>
+				<li><a href="/predict">Results</a></li>
+			</ul>
+		</div>
+
+		<div class="flakes-content">
+			{% block body %}{% endblock %}
+		</div>
+	</div>
+
+
+	<link rel="stylesheet" type="text/css" href="static/bower_components/gridforms/gridforms/gridforms.css">
+
+	<script src="static/bower_components/jquery/dist/jquery.js"></script>
+	<script src="static/bower_components/snapjs/snap.js"></script>
+	<script src="static/bower_components/responsive-elements/responsive-elements.js"></script>
+	<script src="static/bower_components/gridforms/gridforms/gridforms.js"></script>
+
+	<script src="static/js/base.js"></script>
+</body>
+</html>

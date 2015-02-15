@@ -1,29 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Results</title>
     <script type="text/javascript" src="http://cdn.pydata.org/bokeh-0.7.1.min.js"></script>
     <link rel="stylesheet" href="http://cdn.pydata.org/bokeh-0.7.1.min.css" />
     {% autoescape false %}
         {{ plot_script }}
     {% endautoescape  %}
-</head>
-<body>
-    <h1>Results</h1>
+{% endblock %}
 
-    {% for res in results %}
-        <div>
-            <h2>{{ res.name }}</h2>
-            <span>Alpha:</span><span>{{ res.alpha }}</span>
-            <br/>
-            <span>Beta:</span><span>{{ res.beta }}</span>
-        </div>
-    {% endfor %}
-    <div>
-        {% autoescape false %}
-            {{ plot_area }}
-        {% endautoescape  %}
-    </div>
-</body>
-</html>
+{% block body %}
+<div class="view-wrap">
+    <h1>Results</h1>
+    <table class="flakes-table">
+        <thead>
+            <tr>
+                <th>Cohort</th>
+                <th>Alpha</th>
+                <th>Beta</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in results %}
+                <tr>
+                    <td>{{ res.name }}</td>
+                    <td>{{ res.alpha }}</td>
+                    <td>{{ res.beta }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h1>Visualized</h1>
+
+    {% autoescape false %}
+        {{ plot_area }}
+    {% endautoescape  %}
+</div>
+{%  endblock %}
