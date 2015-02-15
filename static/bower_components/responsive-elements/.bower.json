@@ -1,0 +1,31 @@
+{
+  "name": "responsive-elements",
+  "main": "./responsive-elements.js",
+  "version": "1.0.1",
+  "homepage": "http://kumailht.com/responsive-elements/",
+  "authors": [
+    "Kumail Hunaid <contact@kumailht.com>"
+  ],
+  "description": "Responsive elements makes it possible for any element to adapt and respond to the area they occupy. It's a tiny javascript library that you can drop into your projects today.",
+  "keywords": [
+    "responsive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "website"
+  ],
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.1",
+    "commit": "173faa5c46e2dcb67625ae84e388caf2b640b3a2"
+  },
+  "_source": "git://github.com/kumailht/responsive-elements.git",
+  "_target": "~1.0.0",
+  "_originalSource": "responsive-elements"
+}
