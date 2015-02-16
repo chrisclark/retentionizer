@@ -20,7 +20,7 @@ class SbgResults(object):
         self.predicted = ([1] + predicted_survival(self.alpha, self.beta, len(self._actual) + t - 1))
 
         # discounted lifetime value
-        self.dltv = derl(self.alpha, self.beta, discount, 0) * value
+        self.dltv = ((derl(self.alpha, self.beta, discount, 0)/(1 + discount)) + 1) * value
 
     def __repr__(self):
         return self.name
