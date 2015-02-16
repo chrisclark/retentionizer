@@ -5,6 +5,12 @@ Implementation of the shifted beta geometric (sBG) model from "How to Project Cu
 
 http://www.brucehardie.com/papers/021/sbg_2006-05-30.pdf
 
+And valuation calculations from:
+
+Customer-Base Valuation in a Contractual Setting: The Perils of Ignoring Heterogeneity" (Fader and Hardie 2009)
+
+https://marketing.wharton.upenn.edu/files/?whdmsaction=public:main.file&fileID=336
+
 Apache 2 License
 """
 
@@ -126,27 +132,3 @@ def derl(alpha, beta, d, n):
     """discounted expected residual lifetime from "Customer-Base Valuation in a Contractual Setting: The Perils of
     Ignoring Heterogeneity" (Fader and Hardie 2009)"""
     return predicted_retention(alpha, beta, n) * hyp2f1(1, beta + n + 1, alpha + beta + n + 1, 1 / (1 + d))
-
-
-def test():
-    """Test against the High End subscription retention data from the paper"""
-    example_data = [.869, .743, .653, .593, .551, .517, .491]
-    ll11 = log_likelihood(1., 1., example_data)
-    print np.allclose(ll11, -2.115, 1e-3)
-
-    res = maximize(example_data)
-    alpha, beta = res.x
-    print res.status == 0 and np.allclose(alpha, 0.668, 1e-3) and np.allclose(beta, 3.806, 1e-3)
-    print
-
-    print "real\t", map(lambda x: "{0:.1f}%".format(x*100), example_data)
-    print "pred\t", map(lambda x: "{0:.1f}%".format(x*100), predicted_survival(alpha, beta, 12))
-    print
-
-    print map("{0:f}".format, [derl(alpha, beta, 0.1, x) for x in xrange(12)])
-    print
-
-    multi_cohort_data = [[10000, 8000, 6480, 5307, 4391], [10000, 8000, 6480, 5307], [10000, 8000, 6480], [10000, 8000]]
-    alpha, beta = fit_multi_cohort(multi_cohort_data)
-    print np.allclose(alpha, 3.80, 1e-2) and np.allclose(beta, 15.19, 1e-2)
-

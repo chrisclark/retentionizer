@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 from utils import parse, plot_sbg_results, plot_sbg_retention_distribution
 app = Flask(__name__)
 
@@ -9,10 +9,8 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data_url = request.form.get('csvurl')
-    if not data_url:
-        data_url = request.form.get('samples', 'static/zoo/2.csv')
-    periods = request.form.get('periods', 4)
+    data_url = request.form.get('csvurl') or request.form.get('samples')
+    periods = request.form.get('periods') or 4
     sbg_results = parse(data_url, periods)
     script, div = plot_sbg_results(sbg_results)
     distribution_script, distribution_div = plot_sbg_retention_distribution(sbg_results)

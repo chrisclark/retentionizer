@@ -21,7 +21,7 @@ class SbgResults(object):
 
         self.alpha = alpha
         self.beta = beta
-        self.predicted = ([1] + predicted_survival(self.alpha, self.beta, len(self._actual) + t))
+        self.predicted = ([1] + predicted_survival(self.alpha, self.beta, len(self._actual) + t - 1))
 
     def __repr__(self):
         return self.name
