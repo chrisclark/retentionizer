@@ -4,10 +4,10 @@
 
     <h1>About Retentionizer</h1>
 
-    <div>
+    <p>
     Here is an example dataset showing the survival rates of two different cohorts
     ('regular' and 'high end') over 12 time periods.
-    </div>
+    </p>
 
     <table class="flakes-table">
     <tr><td>t</td><td>regular</td><td>high end</td></tr>
@@ -26,11 +26,12 @@
     <tr><td>12</td><td>0.173</td><td>0.394</td></tr>
     </table>
 
-    <div>
-    Using the techniques in "How to Project Customer Retention" by Fade & Hardie (2006),
-    Retentionizer will fit a shifted-beta-geometric distribution to the data, show the
-    projected retention rates for each cohort, show the imputed beta distribution for
-    each cohort, and calculate the LTV of a given customer in that cohort.
-    </div>
+    <p>
+    Using the techniques in "How to Project Customer Retention" by Fader & Hardie (2006)
+    , and an implementation of those techniques by <a href="https://github.com/jdmaturen">
+    JD Maturen</a>, Retentionizer will fit a shifted-beta-geometric distribution to the
+    data, show the projected retention rates for each cohort, show the imputed beta
+    distribution for each cohort, and calculate the LTV of a given customer in that cohort.
+    </p>
 
 {%  endblock %}
