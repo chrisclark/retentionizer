@@ -7,6 +7,10 @@
     {% autoescape false %}
         {{ plot_script }}
     {% endautoescape  %}
+    {% autoescape false %}
+        {{ plot_distribution_script }}
+    {% endautoescape  %}
+
 {% endblock %}
 
 {% block body %}
@@ -35,5 +39,9 @@
     {% autoescape false %}
         {{ plot_area }}
     {% endautoescape  %}
+    {% autoescape false %}
+        {{ plot_distribution_area}}
+    {% endautoescape  %}
+
 </div>
 {%  endblock %}
