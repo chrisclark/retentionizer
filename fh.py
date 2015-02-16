@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template
 from utils import parse, plot_sbg_results, plot_sbg_retention_distribution
 app = Flask(__name__)
 
