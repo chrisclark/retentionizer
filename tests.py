@@ -1,5 +1,5 @@
 import unittest
-from fh import app
+from web import app
 from utils import parse, plot_sbg_results
 
 
@@ -13,7 +13,7 @@ class SbgTestCase(unittest.TestCase):
         self.assertIn('Alpha', response.data)
 
     def test_predict_values(self):
-        res = parse('zoo/2.csv')
+        res = parse('zoo/2.csv', 0, 0, 0)
 
         # Regular
         self.assertAlmostEqual(res[0].alpha, 0.697, 3)
@@ -24,7 +24,7 @@ class SbgTestCase(unittest.TestCase):
         self.assertAlmostEqual(res[1].beta, 3.327, 3)
 
     def test_plot(self):
-        res = parse('zoo/2.csv')
+        res = parse('zoo/2.csv', 0, 0, 0)
         script, div = plot_sbg_results(res)
         self.assertIn("<script", script)
         self.assertIn("<div", div)

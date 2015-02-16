@@ -6,11 +6,7 @@ class SbgResults(object):
 
     def __init__(self, cohort_name, actual_survival, t, discount, value):
         """
-
-        :param alpha:
-        :param beta:
         :param cohort: {t0: survive%, t1: survive%, ..., tn: survive%}
-        :return:
         """
         self.name = cohort_name
         self._actual = actual_survival
@@ -23,7 +19,7 @@ class SbgResults(object):
         self.beta = beta
         self.predicted = ([1] + predicted_survival(self.alpha, self.beta, len(self._actual) + t - 1))
 
-        # dltv = discount lifetime value
+        # discounted lifetime value
         self.dltv = derl(self.alpha, self.beta, discount, 0) * value
 
     def __repr__(self):
