@@ -11,7 +11,12 @@ def home():
 def predict():
     data_url = request.form.get('csvurl') or request.form.get('samples')
     periods = request.form.get('periods') or 4
-    sbg_results = parse(data_url, periods)
+    periods = int(periods)
+    discount = request.form.get('discount') or 10
+    discount = float(discount) / 100.0
+    value = request.form.get('value') or 10
+    value = float(value)
+    sbg_results = parse(data_url, periods, discount, value)
     script, div = plot_sbg_results(sbg_results)
     distribution_script, distribution_div = plot_sbg_retention_distribution(sbg_results)
     return render_template('results.html', results=sbg_results,

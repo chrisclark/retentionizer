@@ -1,10 +1,10 @@
-from sbg import maximize, predicted_survival
+from sbg import maximize, predicted_survival, derl
 import numpy as np
 
 
 class SbgResults(object):
 
-    def __init__(self, cohort_name, actual_survival, t):
+    def __init__(self, cohort_name, actual_survival, t, discount, value):
         """
 
         :param alpha:
@@ -22,6 +22,9 @@ class SbgResults(object):
         self.alpha = alpha
         self.beta = beta
         self.predicted = ([1] + predicted_survival(self.alpha, self.beta, len(self._actual) + t - 1))
+
+        # dltv = discount lifetime value
+        self.dltv = derl(self.alpha, self.beta, discount, 0) * value
 
     def __repr__(self):
         return self.name

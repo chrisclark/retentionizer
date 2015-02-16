@@ -22,6 +22,7 @@
                 <th>Cohort</th>
                 <th>Alpha</th>
                 <th>Beta</th>
+                <th>dLTV</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
                     <td>{{ res.name }}</td>
                     <td>{{ res.alpha|round(3) }}</td>
                     <td>{{ res.beta|round(3) }}</td>
+                    <td>${{ res.dltv|round(2) }}</td>
                 </tr>
             {% endfor %}
         </tbody>
