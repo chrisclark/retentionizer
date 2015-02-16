@@ -9,8 +9,11 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data_url = request.form['csvurl']
-    sbg_results = parse(data_url)
+    data_url = request.form.get('csvurl')
+    if not data_url:
+        data_url = request.form.get('samples', 'static/zoo/2.csv')
+    periods = request.form.get('periods', 4)
+    sbg_results = parse(data_url, periods)
     script, div = plot_sbg_results(sbg_results)
     distribution_script, distribution_div = plot_sbg_retention_distribution(sbg_results)
     return render_template('results.html', results=sbg_results,

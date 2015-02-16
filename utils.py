@@ -15,7 +15,7 @@ def parse(data_url):
     ds = pd.read_csv(data_url)
     ds.reindex(index=ds['t'])
     del ds['t']
-    return [SbgResults(c, dict(zip(ds[c].index, ds[c]))) for c in ds]
+    return [SbgResults(c, dict(zip(ds[c].index, ds[c], periods))) for c in ds]
 
 
 def plot_sbg_results(sbg_results):
