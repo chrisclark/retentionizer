@@ -4,7 +4,7 @@ import numpy as np
 
 class SbgResults(object):
 
-    def __init__(self, cohort_name, actual_survival, t=12):
+    def __init__(self, cohort_name, actual_survival, t):
         """
 
         :param alpha:
@@ -21,7 +21,7 @@ class SbgResults(object):
 
         self.alpha = alpha
         self.beta = beta
-        self.predicted = ([1] + predicted_survival(self.alpha, self.beta, t))
+        self.predicted = ([1] + predicted_survival(self.alpha, self.beta, len(self._actual) + t - 1))
 
     def __repr__(self):
         return self.name
