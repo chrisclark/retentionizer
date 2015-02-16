@@ -26,7 +26,6 @@ def plot_sbg_results(sbg_results):
     return components(p, CDN)
 
 
-
 def plot_sbg_retention_distribution(sbg_results):
     p = bk.figure(title="Distribution of Retention Probability")
     theta = np.linspace(.01, .99, num=100)
