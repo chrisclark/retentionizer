@@ -27,9 +27,9 @@
         <tbody>
             {% for res in results %}
                 <tr>
-                    <td>{{ res.name|round(2) }}</td>
-                    <td>{{ res.alpha|round(2) }}</td>
-                    <td>{{ res.beta|round(2) }}</td>
+                    <td>{{ res.name }}</td>
+                    <td>{{ res.alpha|round(3) }}</td>
+                    <td>{{ res.beta|round(3) }}</td>
                 </tr>
             {% endfor %}
         </tbody>
