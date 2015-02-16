@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <script type="text/javascript">
+    function s3_upload(){
+        var status_elem = document.getElementById("status");
+        var url_elem = document.getElementById("uploaded_csv_url");
+        var s3upload = new S3Upload({
+            file_dom_selector: 'file',
+            s3_sign_put_url: '/sign_s3/',
+
+            onProgress: function(percent, message) {
+                status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+            },
+            onFinishS3Put: function(url) {
+                status_elem.innerHTML = 'Upload completed. Uploaded to: '+ url;
+                url_elem.value = url;
+            },
+            onError: function(status) {
+                status_elem.innerHTML = 'Upload error: ' + status;
+            }
+        });
+    };
+    </script>
+{% endblock %}
+
 {% block body %}
     <h1>Upload Data</h1>
 
@@ -14,6 +38,12 @@
                         <li>
                             <label>URL</label>
                             <input type="text" name="csvurl" />
+                        </li>
+                        <li>
+                            <label>...or upload a csv file<small><a href="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">sample</a></small></label>
+                            <input type="file" id="file" onchange="s3_upload();"/>
+                            <p id="status">Please select a file</p>
+                            <input type="hidden" id="uploaded_csv_url" name="uploaded_csv_url" />
                         </li>
                         <li>
                             <label>...or try a sample</label>
