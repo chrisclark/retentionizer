@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="http://cdn.pydata.org/bokeh-0.7.1.min.css" />
     {% autoescape false %}
         {{ plot_script }}
-    {% endautoescape  %}
-    {% autoescape false %}
         {{ plot_distribution_script }}
     {% endautoescape  %}
 
@@ -15,7 +13,7 @@
 
 {% block body %}
     <h1>Results</h1>
-    <table class="flakes-table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Cohort</th>
@@ -39,9 +37,6 @@
 
     {% autoescape false %}
         {{ plot_area }}
-    {% endautoescape  %}
-    {% autoescape false %}
         {{ plot_distribution_area}}
     {% endautoescape  %}
-
 {%  endblock %}

@@ -10,6 +10,7 @@
             s3_sign_put_url: '/sign_s3/',
 
             onProgress: function(percent, message) {
+                $(status_elem).show();
                 status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
             },
             onFinishS3Put: function(url) {
@@ -25,54 +26,73 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Upload Data</h1>
+    <h1>Get Started</h1>
+        <p>
+            Retentionizer expects csv data to have headers, with the
+            first column named 't' representing time periods, starting at 0, counting up. Each additional
+            column represents a cohort to model, as a survival percentage. The first cell (at t=0) for
+            each cohort must be 1. Survival %s are expressed as decimal numbers. You can view a valid
+            example csv file <a href="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">here</a>
+            , which contains the two cohorts from the original Fader & Hardie paper.
 
-    <p>Enter the URL of your data:</p>
+        </p>
+        <p>
+            <strong>Future periods</strong> controls how many time periods into the future to show on the results charts.
+            <br/>
+            <strong>Value/customer/period</strong> is how much revenue you expect a single active customer to generate per time period.
+            <br/>
+            <strong>Discount rate</strong> is how much to discount future customer value per period to calculate discount customer lifetime value (dLTV). Enter as an integer (e.g. 10 = 10%, 0.5 = 0.5%).
+        </p>
+    <form action="{{ url_for('predict') }}" method="post" class="form-horizontal">
 
-    <div class="grid-2 gutter-40">
-        <div class="span-1">
-            <fieldset>
-                <legend>Settings</legend>
-                <form action="{{ url_for('predict') }}" method="post">
-                    <ul>
-                        <li>
-                            <label>URL</label>
-                            <input type="text" name="csvurl" />
-                        </li>
-                        <li>
-                            <label>...or upload a csv file<small><a href="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">sample</a></small></label>
-                            <input type="file" id="file" onchange="s3_upload();"/>
-                            <p id="status">Please select a file</p>
-                            <input type="hidden" id="uploaded_csv_url" name="uploaded_csv_url" />
-                        </li>
-                        <li>
-                            <label>...or try a sample</label>
-                            <select id="samples" name="samples">
-								<option>Select sample data</option>
-								<option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">eP</option>
-								<option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/2.csv">Paper</option>
-								<option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/3.csv">Internet</option>
-                                <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/4.csv">Toy</option>
-							</select>
-                        </li>
-                        <li>
-                            <label>Project x periods:</label>
-                            <input type="text" name="periods" value="5" />
-                        </li>
-                        <li>
-                            <label>Discount Rate (%):</label>
-                            <input type="text" name="discount" value="10" />
-                        </li>
-                        <li>
-                            <label>Value/customer/period ($):</label>
-                            <input type="text" name="value" value="25" />
-                        </li>
-                        <li>
-                            <input type="submit">
-                        </li>
-                    </ul>
-                </form>
-            </fieldset>
+        <div class="form-group">
+            <label for="file" class="control-label">1. Upload a csv file</label>
+            <div>
+                <input class="form-control" type="file" id="file" onchange="s3_upload();"/>
+                <small id="status" style="display: none;">Please select a file</small>
+                <input type="hidden" id="uploaded_csv_url" name="uploaded_csv_url" />
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="csvurl" class="control-label">2. URL to csv file</label>
+            <div>
+                <input class="form-control" type="text" name="csvurl" id="csvurl" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="samples" class="control-label">3. Use a sample csv file</label>
+            <div>
+                <select class="form-control" id="samples" name="samples">
+                    <option>Select sample data</option>
+                    <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">eP</option>
+                    <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/2.csv">Paper</option>
+                    <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/3.csv">Internet</option>
+                    <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/4.csv">Toy</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label">Future Periods</label>
+            <div>
+                <input class="form-control" type="text" name="periods" value="5" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label">Value/customer/period ($):</label>
+            <div>
+                <input class="form-control" type="text" name="value" value="25" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label">Discount Rate (%):</label>
+            <div>
+                <input class="form-control" type="text" name="discount" value="10" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <input class="btn btn-default" type="submit" value="Retentionize" />
+            </div>
+        </div>
+    </form>
 {%  endblock %}
