@@ -52,7 +52,7 @@
         <form action="{{ url_for('predict') }}" method="post" class="form-horizontal">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="file" class="control-label">1. Upload a csv file</label>
+                    <label for="file" class="control-label">Upload a csv file</label>
                     <div>
                         <input class="form-control" type="file" id="file" onchange="s3_upload();"/>
                         <small id="status" style="display: none;">Please select a file</small>
@@ -60,20 +60,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="csvurl" class="control-label">2. URL to csv file</label>
+                    <label for="csvurl" class="control-label">...or enter URL to csv file</label>
                     <div>
                         <input class="form-control" type="text" name="csvurl" id="csvurl" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="samples" class="control-label">3. Use a sample csv file</label>
+                    <label for="samples" class="control-label">...or use a sample csv file</label>
                     <div>
                         <select class="form-control" id="samples" name="samples">
-                            <option>Select sample data</option>
-                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">eP</option>
-                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/2.csv">Paper</option>
-                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/3.csv">Internet</option>
-                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/4.csv">Toy</option>
+                            <option>Select sample...</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/2.csv">Fader/Hardie Demo</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/3.csv">Sample 2</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">Noncontractual</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/4.csv">Extreme</option>
                         </select>
                     </div>
                 </div>
