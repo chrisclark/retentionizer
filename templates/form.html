@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <script type="text/javascript">
+    function s3_upload(){
+        var status_elem = document.getElementById("status");
+        var url_elem = document.getElementById("uploaded_csv_url");
+        var s3upload = new S3Upload({
+            file_dom_selector: 'file',
+            s3_sign_put_url: '/sign_s3/',
+
+            onProgress: function(percent, message) {
+                $(status_elem).show();
+                status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+            },
+            onFinishS3Put: function(url) {
+                status_elem.innerHTML = 'Upload completed. Uploaded to: '+ url;
+                url_elem.value = url;
+            },
+            onError: function(status) {
+                status_elem.innerHTML = 'Upload error: ' + status;
+            }
+        });
+    };
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>Get Started</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <p class="lead">Data Source</p>
+            <p>
+            Retentionizer expects csv data to have headers, with the
+            first column named 't' representing time periods, starting at 0, counting up. Each additional
+            column represents a cohort to model, as a survival percentage. The first cell (at t=0) for
+            each cohort must be 1. Survival %s are expressed as decimal numbers. You can view a valid
+            example csv file <a href="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">here</a>
+            , which contains the two cohorts from the original Fader & Hardie paper.
+            </p>
+        </div><div class="col-md-1"></div>
+        <div class="col-md-4">
+            <p class="lead">Settings</p>
+            <ul>
+                <li><strong>Future periods</strong> controls how many time periods into the future to show on the results charts.</li>
+                <li><strong>Value/customer/period</strong> is how much revenue you expect a single active customer to generate per time period.</li>
+                <li><strong>Discount rate</strong> is how much to discount future customer value per period to calculate discount customer lifetime value (dLTV). Enter as an integer (e.g. 10 = 10%, 0.5 = 0.5%).</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <form action="{{ url_for('predict') }}" method="post" class="form-horizontal">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="file" class="control-label">Upload a csv file</label>
+                    <div>
+                        <input class="form-control" type="file" id="file" onchange="s3_upload();"/>
+                        <small id="status" style="display: none;">Please select a file</small>
+                        <input type="hidden" id="uploaded_csv_url" name="uploaded_csv_url" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="csvurl" class="control-label">...or enter URL to csv file</label>
+                    <div>
+                        <input class="form-control" type="text" name="csvurl" id="csvurl" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="samples" class="control-label">...or use a sample csv file</label>
+                    <div>
+                        <select class="form-control" id="samples" name="samples">
+                            <option>Select sample...</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/2.csv">Fader/Hardie Demo</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/3.csv">Sample 2</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/1.csv">Noncontractual</option>
+                            <option value="https://raw.githubusercontent.com/chrisclark/retentionizer/master/zoo/4.csv">Extreme</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="Retentionize" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="" class="control-label">Future Periods</label>
+                    <div>
+                        <input class="form-control" type="text" name="periods" value="5" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Value/customer/period ($):</label>
+                    <div>
+                        <input class="form-control" type="text" name="value" value="25" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Discount Rate (%):</label>
+                    <div>
+                        <input class="form-control" type="text" name="discount" value="10" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{%  endblock %}

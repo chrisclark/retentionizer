@@ -1,6 +1,6 @@
 import unittest
 from web import app
-from utils import parse, plot_sbg_results
+from utils import parse, plot_sbg_results, plot_sbg_retention_distribution
 
 
 class SbgTestCase(unittest.TestCase):
@@ -23,8 +23,17 @@ class SbgTestCase(unittest.TestCase):
         self.assertAlmostEqual(res[1].alpha, 0.596, 3)
         self.assertAlmostEqual(res[1].beta, 3.327, 3)
 
-    def test_plot(self):
+    def test_sbg_plot(self):
         res = parse('zoo/2.csv', 0, 0, 0)
         script, div = plot_sbg_results(res)
         self.assertIn("<script", script)
         self.assertIn("<div", div)
+
+    def test_pdf_plot(self):
+        res = parse('zoo/2.csv', 0, 0, 0)
+        script, div = plot_sbg_retention_distribution(res)
+        self.assertIn("<script", script)
+        self.assertIn("<div", div)
+
+if __name__ == '__main__':
+    unittest.main()
