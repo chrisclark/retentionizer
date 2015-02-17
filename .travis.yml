@@ -17,7 +17,6 @@ before_install:
 # Install packages
 install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy bokeh dateutil pandas Flask Jinja2
-  - python setup.py install
 
 # Run test
 script:
