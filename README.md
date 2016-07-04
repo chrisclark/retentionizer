@@ -18,6 +18,6 @@ Basically, it turns a sample of cohort survival rates:
 
 Into this:
 
-![https://raw.githubusercontent.com/chrisclark/retentionizer/master/static/img/sample-output.png]()
+![sample-output](https://raw.githubusercontent.com/chrisclark/retentionizer/master/static/img/sample-output.png)
 
 Retentionizer is built by [David Chudzicki](https://www.github.com/dchudz) and [Chris Clark](https://blog.untrod.com/).
