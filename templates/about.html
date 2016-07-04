@@ -1,42 +1,62 @@
 {% extends "base.html" %}
 
 {% block body %}
-
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-md-offset-1">
     <h1>About Retentionizer</h1>
-
     <p>
-    Here is an example dataset showing the survival rates of two different cohorts
-    ('regular' and 'high end') over 12 time periods.
-    </p>
+      Below is an example dataset showing the survival rates of two
+      different cohorts ('regular' and 'high end') over 12 time
+      periods. Retentionizer uses the techniques from
+      <a href="https://marketing.wharton.upenn.edu/files/?whdmsaction=public:main.file&fileID=327">How
+        to Project Customer Retention</a> to extrapolate cohort survival
+      rate.</a>
+</p>
 
-    <div class="row">
-        <div class="col-md-2">
-            <table class="table table-striped table-condensed">
-                <thead>
-                    <tr><th>t</th><th>regular</th><th>high end</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>0</td><td>1.0</td><td>1.0</td></tr>
-                    <tr><td>1</td><td>0.631</td><td>0.869</td></tr>
-                    <tr><td>2</td><td>0.468</td><td>0.743</td></tr>
-                    <tr><td>3</td><td>0.382</td><td>0.653</td></tr>
-                    <tr><td>4</td><td>0.326</td><td>0.593</td></tr>
-                    <tr><td>5</td><td>0.289</td><td>0.551</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<p>
+  The paper summarizes the idea rather well:<br>
+  <i>
+    As an alternative to common “curve-fitting” regression models, we
+    develop and demonstrate a probability model with a well-grounded
+    “story” for the churn process. We show that our basic model (known as
+    a “shifted-beta-geometric”)... provides remarkably accurate forecasts
+    and other useful diagnostics about customer retention.</i>
+</p>
 
-    <p>
-    Using the techniques in "How to Project Customer Retention" by Fader & Hardie (2006)
-    , and an implementation of those techniques by <a href="https://github.com/jdmaturen">
-    JD Maturen</a>, Retentionizer will fit a shifted-beta-geometric distribution to the
-    data, show the projected retention rates for each cohort, show the imputed beta
-    distribution for each cohort, and calculate the LTV of a given customer in that cohort.
-    </p>
+<div class="row">
+  <div class="col-md-2">
+    <table class="table table-striped table-condensed">
+      <thead>
+        <tr><th>t</th><th>regular</th><th>high end</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td>1.0</td><td>1.0</td></tr>
+        <tr><td>1</td><td>0.631</td><td>0.869</td></tr>
+        <tr><td>2</td><td>0.468</td><td>0.743</td></tr>
+        <tr><td>3</td><td>0.382</td><td>0.653</td></tr>
+        <tr><td>4</td><td>0.326</td><td>0.593</td></tr>
+        <tr><td>5</td><td>0.289</td><td>0.551</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    <p>
-    Retentionizer is built by <a href="https://www.github.com/dchudz">David Chudzicki</a> and <a href="https://www.github.com/chrisclark">Chris Clark</a>.
-    </p>
+<p>
+  Using the techniques
+  in <a href="https://marketing.wharton.upenn.edu/files/?whdmsaction=public:main.file&fileID=327">How
+    to Project Customer Retention</a> by Fader &amp; Hardie (2006), and
+  an implementation of those techniques
+  by <a href="https://github.com/jdmaturen"> JD Maturen</a>,
+  Retentionizer will fit a shifted-beta-geometric distribution to
+  the data, show the projected retention rates for each cohort, show
+  the imputed beta distribution for each cohort, and calculate the
+  LTV of a given customer in that cohort.
+</p>
+
+<p>
+  Retentionizer is built by <a href="https://www.github.com/dchudz">David Chudzicki</a> and <a href="https://blog.untrod.com/">Chris Clark</a>.
+</p>
+</div>
+</div>
 
 {%  endblock %}
