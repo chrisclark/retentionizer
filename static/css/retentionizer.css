@@ -5,7 +5,13 @@ body {
     padding: 40px 15px;
 }
 
+.navbar-inverse {
+    background: #00035f;
+}
 
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
 
 td.bk-plot-above.bk-sidebar.bk-toolbar-active {
     display: none;
