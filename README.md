@@ -1,3 +1,6 @@
+[Try it live!](http://retentionizer.herokuapp.com/)
+_____
+
 Using the techniques in [How to Project Customer Retention](https://marketing.wharton.upenn.edu/files/?whdmsaction=public:main.file&fileID=327) by Fader & Hardie (2006), and an implementation of those techniques by [JD Maturen](https://github.com/jdmaturen), Retentionizer will fit a shifted-beta-geometric distribution to the data, show the projected retention rates for each cohort, show the imputed beta distribution for each cohort, and calculate the LTV of a given customer in that cohort.
 
 Basically, it turns a sample of cohort survival rates:
