@@ -13,6 +13,6 @@ body {
     color: white;
 }
 
-td.bk-plot-above.bk-sidebar.bk-toolbar-active {
-    display: none;
+.bk-toolbar-wrapper {
+    display: none !important;
 }

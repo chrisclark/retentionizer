@@ -2,8 +2,8 @@
 
 {% block head %}
     <title>Results</title>
-    <script type="text/javascript" src="http://cdn.pydata.org/bokeh-0.7.1.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh-0.7.1.min.css" />
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.css" />
     {% autoescape false %}
         {{ plot_script }}
         {{ plot_distribution_script }}
@@ -35,12 +35,14 @@
     </table>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-12 col-md-8 col-md-offset-2">
             {% autoescape false %}
                 {{ plot_area }}
             {% endautoescape  %}
         </div>
-        <div class="col-md-6">
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-md-offset-2">
             {% autoescape false %}
                 {{ plot_distribution_area}}
             {% endautoescape  %}

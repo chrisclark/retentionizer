@@ -1,7 +1,6 @@
 import pandas as pd
 from sbgresults import SbgResults
 import bokeh.plotting as bk
-from bokeh.resources import CDN
 from bokeh.embed import components
 from bokeh.models.tools import HoverTool
 import numpy as np
@@ -30,8 +29,8 @@ def plot_sbg_results(sbg_results):
     p.axis[1].axis_label = "%"
 
     hover = p.select(dict(type=HoverTool))
-    hover.always_active = True
-    hover.snap_to_data = True
+    #hover.always_active = True
+    #hover.snap_to_data = True
     hover.tooltips = OrderedDict([
         ("Period", "@x"),
         ("Survive %", "@y"),
@@ -51,7 +50,7 @@ def plot_sbg_results(sbg_results):
                   marker='o',
                   size=MARKER_SIZE)
 
-    return components(p, CDN)
+    return components(p)
 
 
 def plot_sbg_retention_distribution(sbg_results):
@@ -62,4 +61,4 @@ def plot_sbg_retention_distribution(sbg_results):
         pdf = beta.pdf(theta, a=result.alpha, b=result.beta)
         p.line(theta, pdf, color=COLORS[i], legend=result.name, line_width=LINE_WIDTH)
 
-    return components(p, CDN)
+    return components(p)
